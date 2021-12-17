@@ -9,6 +9,7 @@ a = 40
 trazmer = n1 * a, n2 * a
 razmer = 700, 800
 FPS = 60
+i = 0
 
 pygame.init()
 pygame.mixer.music.load('sounds/тетрисмузыка.mp3')
@@ -84,29 +85,9 @@ def set_record(record, score):
     with open('record', 'w') as f:
         f.write(str(rec))
 
-
-while True:
-    record = get_record()
-    dx, rotate = 0, False
-    screen.blit(bg, (0, 0))
-    screen.blit(tscreen, (20, 20))
-    tscreen.blit(game_bg, (0, 0))
-    # задержка
-    for i in range(lines):
-        pygame.time.wait(200)
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            exit()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_LEFT:
-                dx = -1
-            elif event.key == pygame.K_RIGHT:
-                dx = 1
-            elif event.key == pygame.K_DOWN:
-                alimit = 100
-            elif event.key == pygame.K_UP:
-                rotate = True
+def move_figure():
     # смещение по горизонтали
+    global figure, i,acount, alimit, color, next_color, next_figure
     figure_old = deepcopy(figure)
     for i in range(4):
         figure[i].x += dx
@@ -139,6 +120,47 @@ while True:
             if not check_borders():
                 figure = deepcopy(figure_old)
                 break
+
+def end_game():
+    global acount, aspeed, alimit, score, field
+    for i in range(n1):
+        if field[0][i]:
+            set_record(record, score)
+            field = [[0 for i in range(n1)] for i in range(n2)]
+            acount = 0
+            aspeed = 60
+            alimit = 2000
+            score = 0
+            # анимация закрашивания экрана
+            for i_rect in grid:
+                pygame.draw.rect(tscreen, COLORS[randint(0, 5)], i_rect)
+                screen.blit(tscreen, (20, 20))
+                pygame.display.flip()
+                clock.tick(200)
+
+
+while True:
+    record = get_record()
+    dx, rotate = 0, False
+    screen.blit(bg, (0, 0))
+    screen.blit(tscreen, (20, 20))
+    tscreen.blit(game_bg, (0, 0))
+    # задержка
+    for i in range(lines):
+        pygame.time.wait(200)
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                dx = -1
+            elif event.key == pygame.K_RIGHT:
+                dx = 1
+            elif event.key == pygame.K_DOWN:
+                alimit = 100
+            elif event.key == pygame.K_UP:
+                rotate = True
+    move_figure()
     # проверка на заполнение линии
     line = n2 - 1
     lines = 0
@@ -180,20 +202,7 @@ while True:
     screen.blit(title_record, (485, 620))
     screen.blit(font.render(record, True, pygame.Color('purple')), (500, 680))
     # конец игры
-    for i in range(n1):
-        if field[0][i]:
-            set_record(record, score)
-            field = [[0 for i in range(n1)] for i in range(n2)]
-            acount = 0
-            aspeed = 60
-            alimit = 2000
-            score = 0
-            # анимация закрашивания экрана
-            for i_rect in grid:
-                pygame.draw.rect(tscreen, COLORS[randint(0, 5)], i_rect)
-                screen.blit(tscreen, (20, 20))
-                pygame.display.flip()
-                clock.tick(200)
+    end_game()
 
     pygame.display.flip()
     clock.tick(FPS)
