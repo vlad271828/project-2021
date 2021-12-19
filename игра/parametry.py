@@ -13,6 +13,17 @@ title_start = f.main_font.render('start', True, pygame.Color('black'))
 title_quit = f.main_font.render('quit', True, pygame.Color('black'))
 title_restart = f.main_font.render('restart', True, pygame.Color('black'))
 title_resume = f.main_font.render('resume', True, pygame.Color('black'))
+title_theme1 = f.button_font.render('BLUE SPACE', True, pygame.Color('black'))
+title_theme2 = f.button_font.render('BLACK SPACE', True, pygame.Color('black'))
+title_theme3 = f.button_font.render('NATURE', True, pygame.Color('black'))
+title_theme4 = f.button_font.render('CAT', True, pygame.Color('black'))
+title_theme5 = f.button_font.render('GAMEBOY', True, pygame.Color('black'))
+title_level1 = f.button_font.render('level 1', True, pygame.Color('purple'))
+title_level2 = f.button_font.render('level 2', True, pygame.Color('purple'))
+title_level3 = f.button_font.render('level 3', True, pygame.Color('purple'))
+title_level4 = f.button_font.render('level 4', True, pygame.Color('purple'))
+title_level5 = f.button_font.render('level 5', True, pygame.Color('purple'))
+
 
 
 BLACK = (0, 0, 0)

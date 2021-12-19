@@ -3,7 +3,6 @@ from figure import *
 
 
 class Tetris:
-    level = 2
     score = 0
     state = "start"
     field = []
