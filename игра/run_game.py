@@ -40,7 +40,7 @@ def choose_theme():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit()
-
+        pygame.display.set_caption("Выбор фона")
         screen.blit(Img.themeimage, (0, 0))
 
         if theme1.draw(70, 50, title_theme1):
@@ -75,7 +75,7 @@ def choose_level():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit()
-
+        pygame.display.set_caption("Выбор уровня")
         screen.blit(Img.levelimage, (0, 0))
 
         if level1.draw(70, 100, title_level1):
@@ -108,7 +108,7 @@ def chose_music():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 exit()
-
+        pygame.display.set_caption("Выбор музыки")
         screen.blit(Img.soundimage, (0, 0))
 
         if music1.draw(70, 100, title_music1):
@@ -139,6 +139,7 @@ def paused():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
+        pygame.display.set_caption("Пауза")
         screen.blit(Img.bg_menu, (0, 0))
         resume_button.draw(250, 250, title_resume, "resume")
         quit_button.draw(250, 500, title_quit, exit)
@@ -184,6 +185,7 @@ def run_game():
             if event.key == pygame.K_DOWN:
                 pressing_down = False
         # фон главного экрана
+        pygame.display.set_caption("Tetris")
         screen.blit(Img.bckg, (0, 0))
         # рисует кнопку паузу
         pause_button.draw(485, 280, title_pause, paused)
