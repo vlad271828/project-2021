@@ -1,3 +1,4 @@
+import run_game
 from figure import *
 
 
