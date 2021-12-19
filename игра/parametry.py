@@ -23,6 +23,10 @@ title_level2 = f.button_font.render('level 2', True, pygame.Color('purple'))
 title_level3 = f.button_font.render('level 3', True, pygame.Color('purple'))
 title_level4 = f.button_font.render('level 4', True, pygame.Color('purple'))
 title_level5 = f.button_font.render('level 5', True, pygame.Color('purple'))
+title_music1 = f.button_font.render('Korobeiniki', True, pygame.Color('purple'))
+title_music2 = f.button_font.render('guitar 8bit', True, pygame.Color('purple'))
+title_music3 = f.button_font.render('8bit', True, pygame.Color('purple'))
+title_music4 = f.button_font.render('soundless', True, pygame.Color('purple'))
 
 
 
