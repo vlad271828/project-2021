@@ -7,6 +7,7 @@ bg_end = pygame.image.load('img/bg_end.jpg')
 bg_menu = pygame.image.load('img/bg_menu.jpg')
 themeimage = pygame.image.load('img/choose_theme.jpg')
 levelimage = pygame.image.load('img/choose_level.jpg')
+soundimage = pygame.image.load('img/choose_music.jpg')
 
 def set_theme(num):
     global bckg
