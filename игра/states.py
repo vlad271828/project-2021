@@ -3,8 +3,11 @@ from enum import Enum
 class State(Enum):
     MENU = 0,
     START = 1,
-    QUIT = 2,
-    RESTART = 3
+    RESTART = 3,
+    CHOOSE_THEME = 4,
+    CHOOSE_LEVEL = 5,
+    CHOOSE_MUSIC = 6,
+    QUIT = 7
 
 class GameState:
     def __init__(self):
