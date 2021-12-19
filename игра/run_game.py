@@ -22,14 +22,84 @@ def start():
         if game_state.check(State.MENU):
             menu.show_menu()
         elif game_state.check(State.START):
+            choose_level()
+            choose_theme()
             run_game()
         elif game_state.check(State.QUIT):
             break
 
+def choose_theme():
+    theme1 = Button(300, 70)
+    theme2 = Button(300, 70)
+    theme3 = Button(300, 70)
+    theme4 = Button(300, 70)
+    theme5 = Button(300, 70)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
+
+        screen.blit(Img.themeimage, (0, 0))
+
+        if theme1.draw(70, 50, title_theme1):
+            Img.set_theme(1)
+            return
+        if theme2.draw(70, 200, title_theme2):
+            Img.set_theme(2)
+            return
+        if theme3.draw(70, 350, title_theme3):
+            Img.set_theme(3)
+            return
+        if theme4.draw(70, 500, title_theme4):
+            Img.set_theme(4)
+            return
+        if theme5.draw(70, 650, title_theme5):
+            Img.set_theme(5)
+            return
+
+        pygame.display.update()
+        clock.tick(60)
+
+def choose_level():
+    global level
+    level1 = Button(300, 70)
+    level2 = Button(300, 70)
+    level3 = Button(300, 70)
+    level4 = Button(300, 70)
+    level5 = Button(300, 70)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
+
+        screen.blit(Img.levelimage, (0, 0))
+
+        if level1.draw(70, 100, title_level1):
+            level = 1
+            return
+        if level2.draw(70, 200, title_level2):
+            level = 2
+            return
+        if level3.draw(70, 300, title_level3):
+            level = 3
+            return
+        if level4.draw(70, 400, title_level4):
+            level = 4
+            return
+        if level5.draw(70, 500, title_level5):
+            level = 5
+            return
+
+        pygame.display.update()
+        clock.tick(60)
+
+
 def paused():
     global pause
     pause = True
-    resume_button = Button(200, 100)
+    resume_button = Button(260, 100)
     quit_button = Button(200, 100)
     while pause:
         for event in pygame.event.get():
@@ -45,6 +115,7 @@ def paused():
 
 
 def run_game():
+    global level
     rgame = True
     pause_button = Button(100, 50)
     global counter, pressing_down
@@ -55,7 +126,7 @@ def run_game():
         if counter > 100000:
             counter = 0
 
-        if counter % (fps // game.level // 2) == 0 or pressing_down:
+        if counter % (fps // level // 2) == 0 or pressing_down:
             if game.state == "start":
                 game.go_down()
 
@@ -80,7 +151,7 @@ def run_game():
             if event.key == pygame.K_DOWN:
                 pressing_down = False
         # фон главного экрана
-        screen.blit(Img.bg, (0, 0))
+        screen.blit(Img.bckg, (0, 0))
         # рисует кнопку паузу
         pause_button.draw(485, 280, title_pause, paused)
         # рисует сетку
