@@ -12,7 +12,6 @@ import menu
 fps = 60
 game = Tetris(18, 10)
 game_state = GameState()
-pygame.mixer.music.play(-1)
 counter = 0
 pressing_down = False
 
@@ -23,6 +22,8 @@ def start():
             menu.show_menu()
         elif game_state.check(State.START):
             choose_level()
+            chose_music()
+            pygame.mixer.music.play(-1)
             choose_theme()
             run_game()
         elif game_state.check(State.QUIT):
@@ -53,6 +54,7 @@ def choose_theme():
             return
         if theme4.draw(70, 500, title_theme4):
             Img.set_theme(4)
+            pygame.mixer.music.play(-1)
             return
         if theme5.draw(70, 650, title_theme5):
             Img.set_theme(5)
@@ -94,6 +96,37 @@ def choose_level():
 
         pygame.display.update()
         clock.tick(60)
+
+def chose_music():
+    global level
+    music1 = Button(300, 70)
+    music2 = Button(300, 70)
+    music3 = Button(300, 70)
+    music4 = Button(300, 70)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
+
+        screen.blit(Img.soundimage, (0, 0))
+
+        if music1.draw(70, 100, title_music1):
+            Sounds.set_sound(1)
+            return
+        if music2.draw(70, 200, title_music2):
+            Sounds.set_sound(2)
+            return
+        if music3.draw(70, 300, title_music3):
+            Sounds.set_sound(3)
+            return
+        if music4.draw(70, 400, title_music4):
+            Sounds.set_sound(4)
+            return
+
+        pygame.display.update()
+        clock.tick(60)
+
 
 
 def paused():
